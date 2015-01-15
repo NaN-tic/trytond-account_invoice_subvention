@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- This file is part of account_invoice_subvention module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<data>
+    <xpath expr="/form/notebook/page[@id='invoice']"
+            position="after">
+        <page string="Subventions" id="subventions">
+            <field name="subventions" colspan="4"/>
+            <group col="2" colspan="4" id="subventions_amount">
+                <label name="total_amount" xalign="1.0" xexpand="1"/>
+                <field name="total_amount" xalign="1.0" xexpand="0"/>
+                <label name="subvention_amount" xalign="1.0" xexpand="1"/>
+                <field name="subvention_amount" xalign="1.0" xexpand="0"/>
+                <label name="customer_amount" xalign="1.0" xexpand="1"/>
+                <field name="customer_amount" xalign="1.0" xexpand="0"/>
+            </group>
+        </page>
+    </xpath>
+</data>

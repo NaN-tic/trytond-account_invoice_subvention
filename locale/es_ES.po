@@ -1,0 +1,99 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.invoice,customer_amount:"
+msgid "Customer Amount"
+msgstr "Importe de usuario"
+
+msgctxt "field:account.invoice,subvention_amount:"
+msgid "Subventions"
+msgstr "Subvenciones"
+
+msgctxt "field:account.invoice,subventions:"
+msgid "Subventions"
+msgstr "Subvenciones"
+
+msgctxt "field:account.invoice.subvention,amount:"
+msgid "Amount"
+msgstr "Importe"
+
+msgctxt "field:account.invoice.subvention,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:account.invoice.subvention,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:account.invoice.subvention,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+msgctxt "field:account.invoice.subvention,currency_digits:"
+msgid "Currency Digits"
+msgstr "Decimales moneda"
+
+msgctxt "field:account.invoice.subvention,description:"
+msgid "Description"
+msgstr "Descripción"
+
+msgctxt "field:account.invoice.subvention,id:"
+msgid "ID"
+msgstr "Id"
+
+msgctxt "field:account.invoice.subvention,invoice:"
+msgid "Invoice"
+msgstr "Factura"
+
+msgctxt "field:account.invoice.subvention,product:"
+msgid "Product"
+msgstr "Producto"
+
+msgctxt "field:account.invoice.subvention,quantity:"
+msgid "Quantity"
+msgstr "Cantidad"
+
+msgctxt "field:account.invoice.subvention,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:account.invoice.subvention,unit:"
+msgid "Unit"
+msgstr "Unidad"
+
+msgctxt "field:account.invoice.subvention,unit_digits:"
+msgid "Unit Digits"
+msgstr "Decimales unidad"
+
+msgctxt "field:account.invoice.subvention,unit_price:"
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+msgctxt "field:account.invoice.subvention,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.invoice.subvention,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "model:account.invoice.subvention,name:"
+msgid "Account Invoice Subvention"
+msgstr "Subvención en factura"
+
+msgctxt "selection:product.template,type:"
+msgid "Subvention"
+msgstr "Subvención"
+
+msgctxt "view:account.invoice.subvention:"
+msgid "Account Invoice Subvention"
+msgstr "Subvención en factura"
+
+msgctxt "view:account.invoice.subvention:"
+msgid "Account Invoice Subventions"
+msgstr "Subvenciones en factura"
+
+msgctxt "view:account.invoice:"
+msgid "Subventions"
+msgstr "Subvenciones"

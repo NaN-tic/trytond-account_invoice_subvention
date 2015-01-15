@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- This file is part of account_invoice_subvention module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data>
+
+        <!-- account.invoice -->
+        <record model="ir.ui.view" id="invoice_view_form">
+            <field name="model">account.invoice</field>
+            <field name="inherit"
+                ref="account_invoice.invoice_view_form"/>
+            <field name="name">invoice_form</field>
+        </record>
+
+        <!-- account.invoice.subvention -->
+        <record model="ir.ui.view" id="account_invoice_subvention_tree_view">
+            <field name="model">account.invoice.subvention</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="30"/>
+            <field name="name">account_invoice_subvention_tree</field>
+        </record>
+        <record model="ir.ui.view" id="account_invoice_subvention_form_view">
+            <field name="model">account.invoice.subvention</field>
+            <field name="type">form</field>
+            <field name="priority" eval="30"/>
+            <field name="name">account_invoice_subvention_form</field>
+        </record>
+    </data>
+</tryton>
