@@ -39,17 +39,23 @@ class Invoice:
 
     @classmethod
     def get_subventions(cls, invoices, names):
-        result = {n: {i.id: _ZERO for i in invoices} for n in names}
-        amount = cls.get_amount(invoices,
-            ['untaxed_amount', 'tax_amount', 'total_amount'])
-        if 'total_amount' in amount:
-            for invoice in invoices:
-                if invoice.subventions:
-                    result['subvention_amount'][invoice.id] = sum(s.amount
+        subvention_amount = dict((i.id, _ZERO) for i in invoices)
+        customer_amount = dict((i.id, _ZERO) for i in invoices)
+
+        for invoice in invoices:
+            if invoice.subventions:
+                subvention_amount[invoice.id] = sum(s.amount
                         for s in invoice.subventions)
-                    result['customer_amount'][invoice.id] = (
-                        amount['total_amount'][invoice.id] -
-                        result['subvention_amount'][invoice.id])
+                customer_amount[invoice.id] = (
+                    invoice.total_amount - subvention_amount[invoice.id])
+
+        result = {
+            'subvention_amount': subvention_amount,
+            'customer_amount': customer_amount,
+            }
+        for key in result.keys():
+            if key not in names:
+                del result[key]
         return result
 
     @fields.depends('subventions', 'total_amount')
