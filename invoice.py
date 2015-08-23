@@ -2,15 +2,15 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from decimal import Decimal
-from trytond.config import config
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
-
+from trytond.config import config as config_
 
 __all__ = ['Invoice', 'InvoiceLine', 'AccountInvoiceSubvention']
 __metaclass__ = PoolMeta
+
 _STATES = {
     'readonly': Eval('state') != 'draft',
     }
@@ -21,7 +21,7 @@ _TYPE = [
     ('in_credit_note', 'Supplier Credit Note'),
     ]
 _ZERO = Decimal('0.0')
-DIGITS = int(config.get('digits', 'unit_price_digits', 4))
+DIGITS = config_.getint('product', 'price_decimal', default=4)
 
 
 class Invoice:
