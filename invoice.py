@@ -60,26 +60,20 @@ class Invoice:
 
     @fields.depends('subventions', 'total_amount')
     def on_change_subventions(self):
-        changes = {
-            'subvention_amount': _ZERO,
-            'customer_amount': _ZERO,
-            }
-        if self.subventions:
-            changes['subvention_amount'] = sum(s.amount if s.amount else _ZERO
-                for s in self.subventions)
-            changes['customer_amount'] = (self.total_amount -
-                changes['subvention_amount'])
-        return changes
+        self.subvention_amount = _ZERO,
+        self.customer_amount = _ZERO,
 
-    @fields.depends('subventions')
-    def on_change_lines(self):
-        changes = super(Invoice, self).on_change_lines()
         if self.subventions:
-            changes['subvention_amount'] = sum(s.amount
+            self.subvention_amount = sum(s.amount if s.amount else _ZERO
                 for s in self.subventions)
-            changes['customer_amount'] = (changes['total_amount'] -
-                changes['subvention_amount'])
-        return changes
+            self.customer_amount = (self.total_amount - self.subvention_amount)
+
+    @fields.depends('subventions', 'total_amount', 'subvention_amount')
+    def on_change_lines(self):
+        super(Invoice, self).on_change_lines()
+        if self.subventions:
+            self.subvention_amount = sum(s.amount for s in self.subventions)
+            self.customer_amount = (self.total_amount - self.subvention_amount)
 
 
 class InvoiceLine:
@@ -158,7 +152,6 @@ class AccountInvoiceSubvention(ModelSQL, ModelView):
         'invoice')
     def on_change_product(self):
         Product = Pool().get('product.product')
-        res = {}
 
         party_context = {}
         if self.invoice and self.invoice.party:
@@ -169,10 +162,9 @@ class AccountInvoiceSubvention(ModelSQL, ModelView):
         if self.product:
             if not self.description:
                 with Transaction().set_context(party_context):
-                    res['description'] = Product(self.product.id).rec_name
-            res['unit'] = self.product.default_uom.id
-            res['unit_price'] = self.product.list_price_uom
-        return res
+                    self.description = Product(self.product.id).rec_name
+            self.unit = self.product.default_uom.id
+            self.unit_price = self.product.list_price_uom
 
     @fields.depends('unit')
     def on_change_with_unit_digits(self, name=None):
