@@ -45,7 +45,7 @@ class Invoice:
         for invoice in invoices:
             if invoice.subventions:
                 subvention_amount[invoice.id] = sum(s.amount
-                        for s in invoice.subventions)
+                        if s.amount else _ZERO for s in invoice.subventions)
                 customer_amount[invoice.id] = (
                     invoice.total_amount - subvention_amount[invoice.id])
 
@@ -60,18 +60,21 @@ class Invoice:
 
     @fields.depends('subventions', 'total_amount')
     def on_change_subventions(self):
-        self.subvention_amount = _ZERO,
-        self.customer_amount = _ZERO,
+        self.subvention_amount = _ZERO
+        self.customer_amount = _ZERO
 
-        if self.subventions:
+        if self.subventions and self.total_amount:
             self.subvention_amount = sum(s.amount if s.amount else _ZERO
                 for s in self.subventions)
             self.customer_amount = (self.total_amount - self.subvention_amount)
 
     @fields.depends('subventions', 'total_amount', 'subvention_amount')
     def on_change_lines(self):
+        self.subvention_amount = _ZERO
+        self.customer_amount = _ZERO
+
         super(Invoice, self).on_change_lines()
-        if self.subventions:
+        if self.subventions and self.total_amount:
             self.subvention_amount = sum(s.amount for s in self.subventions)
             self.customer_amount = (self.total_amount - self.subvention_amount)
 
@@ -163,7 +166,7 @@ class AccountInvoiceSubvention(ModelSQL, ModelView):
             if not self.description:
                 with Transaction().set_context(party_context):
                     self.description = Product(self.product.id).rec_name
-            self.unit = self.product.default_uom.id
+            self.unit = self.product.default_uom
             self.unit_price = self.product.list_price_uom
 
     @fields.depends('unit')
@@ -183,3 +186,4 @@ class AccountInvoiceSubvention(ModelSQL, ModelView):
         if self.currency and self.quantity and self.unit_price:
             return self.currency.round(
                 Decimal(str(self.quantity)) * self.unit_price)
+        return Decimal(0.0)
