@@ -72,11 +72,11 @@ msgstr "Preu unitari"
 
 msgctxt "field:account.invoice.subvention,write_date:"
 msgid "Write Date"
-msgstr "Data de modificació"
+msgstr "Data modificació"
 
 msgctxt "field:account.invoice.subvention,write_uid:"
 msgid "Write User"
-msgstr "Usuari de modificació"
+msgstr "Usuari modificació"
 
 msgctxt "model:account.invoice.subvention,name:"
 msgid "Account Invoice Subvention"
