@@ -9,7 +9,6 @@ from trytond.transaction import Transaction
 from trytond.config import config as config_
 
 __all__ = ['Invoice', 'InvoiceLine', 'AccountInvoiceSubvention']
-__metaclass__ = PoolMeta
 
 _STATES = {
     'readonly': Eval('state') != 'draft',
@@ -25,6 +24,7 @@ DIGITS = config_.getint('product', 'price_decimal', default=4)
 
 
 class Invoice:
+    __metaclass__ = PoolMeta
     __name__ = 'account.invoice'
     subventions = fields.One2Many('account.invoice.subvention', 'invoice',
         'Subventions', states=_STATES, depends=['state'])
@@ -80,6 +80,7 @@ class Invoice:
 
 
 class InvoiceLine:
+    __metaclass__ = PoolMeta
     __name__ = 'account.invoice.line'
 
     @classmethod
