@@ -13,12 +13,6 @@ __all__ = ['Invoice', 'InvoiceLine', 'AccountInvoiceSubvention']
 _STATES = {
     'readonly': Eval('state') != 'draft',
     }
-_TYPE = [
-    ('out_invoice', 'Invoice'),
-    ('in_invoice', 'Supplier Invoice'),
-    ('out_credit_note', 'Credit Note'),
-    ('in_credit_note', 'Supplier Credit Note'),
-    ]
 _ZERO = Decimal('0.0')
 DIGITS = config_.getint('product', 'price_decimal', default=4)
 
