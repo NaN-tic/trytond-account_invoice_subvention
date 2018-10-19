@@ -17,8 +17,7 @@ _ZERO = Decimal('0.0')
 DIGITS = config_.getint('product', 'price_decimal', default=4)
 
 
-class Invoice:
-    __metaclass__ = PoolMeta
+class Invoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
     subventions = fields.One2Many('account.invoice.subvention', 'invoice',
         'Subventions', states=_STATES, depends=['state'])
@@ -73,8 +72,7 @@ class Invoice:
             self.customer_amount = (self.total_amount - self.subvention_amount)
 
 
-class InvoiceLine:
-    __metaclass__ = PoolMeta
+class InvoiceLine(metaclass=PoolMeta):
     __name__ = 'account.invoice.line'
 
     @classmethod

@@ -2,7 +2,7 @@
 <!-- This file is part of account_invoice_subvention module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
-<form string="Account Invoice Subvention">
+<form>
     <label name="product"/>
     <field name="product" colspan="3"/>
     <label name="description"/>

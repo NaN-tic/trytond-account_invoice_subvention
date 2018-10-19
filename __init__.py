@@ -2,14 +2,14 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from trytond.pool import Pool
-from .product import *
-from .invoice import *
+from . import product
+from . import invoice
 
 
 def register():
     Pool.register(
-        Template,
-        Invoice,
-        InvoiceLine,
-        AccountInvoiceSubvention,
+        product.Template,
+        invoice.Invoice,
+        invoice.InvoiceLine,
+        invoice.AccountInvoiceSubvention,
         module='account_invoice_subvention', type_='model')
